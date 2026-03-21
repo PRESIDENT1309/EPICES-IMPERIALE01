@@ -1,0 +1,29 @@
+{
+  "name": "project-bolt-sb1-pk6ykth3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "cd project && npm run dev",
+    "build": "cd project && npm run build",
+    "lint": "cd project && npm run lint",
+    "typecheck": "cd project && npm run typecheck",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PRESIDENT1309/project-bolt-sb1-pk6ykth3.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/PRESIDENT1309/project-bolt-sb1-pk6ykth3/issues"
+  },
+  "homepage": "https://github.com/PRESIDENT1309/project-bolt-sb1-pk6ykth3#readme",
+  "dependencies": {
+    "bolt-framework": "^1.0.0-security",
+    "vite": "^8.0.1"
+  }
+}
