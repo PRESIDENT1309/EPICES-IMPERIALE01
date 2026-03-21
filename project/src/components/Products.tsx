@@ -1,20 +1,20 @@
 import { ShoppingCart } from 'lucide-react';
-import images1 from '../images/CAJUN.jpeg'
-import images2 from '../images/POIVRE NOIR.jpeg'
-import images3 from '../images/POIVRE BLANC.jpeg'
-import images4 from '../images/CLOU DE GIROFLE.jpeg'
-import images5 from '../images/CANNELLE.jpeg'
-import images6 from '../images/CURCUMA.jpeg'
-import images7 from '../images/PIMENT EN POUDRE.jpeg'
-import images8 from '../images/PIMENT.jpeg'
-import images9 from '../images/FEUILLE DE LAURIER.jpeg'
-import images10 from '../images/THYM.jpeg'
-import images11 from '../images/ROMARIN.jpeg'
-import images12 from '../images/PAPRIKA.jpg'
-import images13 from '../images/MUSCADE.jpeg'
-import images14 from '../images/GRAINE DE CHIA.jpg'
-import images15 from '../images/GRAINE DE LIN.jpg'
-import images16 from '../images/GRAINE DE NIGELLE.jpg'
+import images1 from '../images/CAJUN.jpeg';
+import images2 from '../images/POIVRE NOIR.jpeg';
+import images3 from '../images/POIVRE BLANC.jpeg';
+import images4 from '../images/CLOU DE GIROFLE.jpeg';
+import images5 from '../images/CANNELLE.jpeg';
+import images6 from '../images/CURCUMA.jpeg';
+import images7 from '../images/PIMENT EN POUDRE.jpeg';
+import images8 from '../images/PIMENT.jpeg';
+import images9 from '../images/FEUILLE DE LAURIER.jpeg';
+import images10 from '../images/THYM.jpeg';
+import images11 from '../images/ROMARIN.jpeg';
+import images12 from '../images/PAPRIKA.jpg';
+import images13 from '../images/MUSCADE.jpeg';
+import images14 from '../images/GRAINE DE CHIA.jpg';
+import images15 from '../images/GRAINE DE LIN.jpg';
+import images16 from '../images/GRAINE DE NIGELLE.jpg';
 
 const products = [
   {
