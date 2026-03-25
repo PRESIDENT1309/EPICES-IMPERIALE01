@@ -12,9 +12,6 @@ import images10 from '../images/THYM.jpeg';
 import images11 from '../images/ROMARIN.jpeg';
 import images12 from '../images/PAPRIKA.jpg';
 import images13 from '../images/MUSCADE.jpeg';
-import images14 from '../images/GRAINE DE CHIA.jpg';
-import images15 from '../images/GRAINE DE LIN.jpg';
-import images16 from '../images/GRAINE DE NIGELLE.jpg';
 
 const products = [
   {
@@ -107,27 +104,6 @@ const products = [
     price: '10000 FC',
     description: 'Paprika douce ou piquante, pour donner couleur et saveur à vos cuisines du monde.',
     image: images12,
-  },
-  {
-    id: 14,
-    name: 'Graines de Chia',
-    price: '7000 FC',
-    description: 'Graines de chia nutritifs et savoureux, parfaits pour les smoothies et les desserts sains.',
-    image: images14,
-  },
-  {
-    id: 15,
-    name: 'Graines de Lin',
-    price: '10000 FC',
-    description: 'Graines de lin riches en oméga-3, pour ajouter texture et santé à vos plats.',
-    image: images15,
-  },
-  {
-    id: 16,
-    name: 'Graines de Nigelle',
-    price: '10000 FC',
-    description: 'Graines de Nigelle aux saveurs complexes et épicées, traditionnelles dans les cuisines orientales.',
-    image: images16,
   },
 ];
 
