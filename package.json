@@ -23,7 +23,9 @@
   },
   "homepage": "https://github.com/PRESIDENT1309/project-bolt-sb1-pk6ykth3#readme",
   "dependencies": {
-    "bolt-framework": "^1.0.0-security",
+    "bolt-framework": "^1.0.0-security"
+  },
+  "devDependencies": {
     "vite": "^8.0.1"
   }
 }
