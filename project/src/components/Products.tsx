@@ -109,8 +109,8 @@ const products = [
 
 export default function Products() {
   const handleOrder = (productName: string) => {
-    const message = `Bonjour, je souhaite commander ${productName}`;
-    const whatsappUrl = `https://wa.me/243971347427?text=${encodeURIComponent(message)}`;
+    const message = `Bonjour EPICES IMPERIALE, je souhaite passer commande du produit suivant: ${productName}`;
+    const whatsappUrl = `https://wa.me/243801910623?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
 

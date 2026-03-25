@@ -2,8 +2,8 @@ import { MapPin, Phone, Mail, MessageCircle } from 'lucide-react';
 
 export default function Contact() {
   const handleWhatsAppClick = () => {
-    const message = "Bonjour, je souhaite commander vos épices ÉPICES IMPÉRIALE";
-    const whatsappUrl = `https://wa.me/243971347427?text=${encodeURIComponent(message)}`;
+    const message = "Bonjour EPICES IMPERIALE, je souhaite passer commande du produit suivant:";
+    const whatsappUrl = `https://wa.me/243801910623?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
 
@@ -41,7 +41,7 @@ export default function Contact() {
               </div>
               <div>
                 <h3 className="text-xl font-bold mb-2">Téléphone</h3>
-                <p className="text-gray-400">+243 971 347 427</p>
+                <p className="text-gray-400">+243 80 191 06 23</p>
               </div>
             </div>
 
@@ -96,7 +96,7 @@ export default function Contact() {
               <button
                 onClick={() => {
                   const message = "Bonjour, j'aimerais obtenir plus d'informations sur vos épices";
-                  const whatsappUrl = `https://wa.me/243971347427?text=${encodeURIComponent(message)}`;
+                  const whatsappUrl = `https://wa.me/243801910623?text=${encodeURIComponent(message)}`;
                   window.open(whatsappUrl, '_blank');
                 }}
                 className="w-full px-8 py-4 bg-white/10 text-white font-semibold rounded-lg hover:bg-white/20 transition-all duration-300 border border-white/20"
@@ -106,7 +106,7 @@ export default function Contact() {
             </div>
 
             <p className="text-center text-gray-400 text-sm mt-8">
-              Livraison disponible à Kinshasa et environs
+              Livraison disponible à Kinshasa 
             </p>
           </div>
         </div>

@@ -81,7 +81,7 @@ export default function Footer() {
             <h3 className="text-lg font-bold mb-4 text-amber-500">Contact</h3>
             <ul className="space-y-2 text-gray-400">
               <li>Kinshasa, RDC</li>
-              <li>+243 971 347 427</li>
+              <li>+243 80 191 06 23</li>
               <li>empire1309@gmail.com</li>
             </ul>
           </div>
