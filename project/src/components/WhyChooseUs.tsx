@@ -63,8 +63,8 @@ export default function WhyChooseUs() {
           </p>
           <button
             onClick={() => {
-              const message = "Bonjour, je suis intéressé(e) pour devenir distributeur ÉPICES IMPÉRIALE";
-              const whatsappUrl = `https://wa.me/243971347427?text=${encodeURIComponent(message)}`;
+              const message = "Bonjour EPICES IMPERIALE, je souhaite devenir distributeur";
+              const whatsappUrl = `https://wa.me/243801910623?text=${encodeURIComponent(message)}`;
               window.open(whatsappUrl, '_blank');
             }}
             className="px-8 py-4 bg-gradient-to-r from-amber-500 to-amber-600 text-black font-semibold rounded-lg hover:from-amber-600 hover:to-amber-700 transition-all duration-300 transform hover:scale-105"
