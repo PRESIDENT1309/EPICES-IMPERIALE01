@@ -9,6 +9,7 @@ import WhyChooseUs from './components/WhyChooseUs';
 import Lifestyle from './components/Lifestyle';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import FloatingCart from './components/FloatingCart';
 import { CartProvider } from './context/CartContext';
 
 function AppContent() {
@@ -96,6 +97,7 @@ function App() {
   return (
     <CartProvider>
       <AppContent />
+      <FloatingCart />
     </CartProvider>
   );
 }
