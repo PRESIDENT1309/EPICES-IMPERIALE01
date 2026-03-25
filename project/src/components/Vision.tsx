@@ -9,7 +9,7 @@ export default function Vision() {
             NOTRE <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-amber-600">VISION</span>
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-            Construire l'avenir de la gastronomie africaine
+            Construire l'avenir de la gastronomie congolaise et africaine à travers des épices d'exception
           </p>
         </div>
 
@@ -69,7 +69,7 @@ export default function Vision() {
               </div>
               <h4 className="text-xl font-bold mb-2">Authenticité</h4>
               <p className="text-gray-400 text-sm">
-                Fidèles à nos racines africaines et à nos traditions
+                Fidèles à nos racines congolaises et à nos traditions
               </p>
             </div>
 
