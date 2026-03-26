@@ -1,8 +1,14 @@
+import { useState } from 'react';
 import { Trash2, ShoppingCart } from 'lucide-react';
 import { useCart } from '../context/CartContext';
+import OrderModal from './OrderModal';
+import { saveOrderToSupabase, type AddressData } from '../utils/orderService';
 
 export default function Cart() {
   const { cartItems, removeFromCart, updateQuantity, getTotal, clearCart } = useCart();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   if (cartItems.length === 0) {
     return (
@@ -27,48 +33,81 @@ export default function Cart() {
   };
 
   // Déterminer l'URL de base pour les images
-  const getBaseUrl = (): string => {
-    if (typeof window !== 'undefined' && window.location.hostname === 'localhost') {
-      return 'http://localhost:5173'; // Vite default port
-    }
-    // Pour la production (Vercel)
-    return window.location.origin;
-  };
-
   const total = getTotal();
-  const baseUrl = getBaseUrl();
 
-  const generateWhatsAppMessage = (): string => {
-    let message = 'Bonjour Épices Impériale, je souhaite passer commande :\n\n';
-    
-    cartItems.forEach((item) => {
-      const itemTotal = item.price * item.quantity;
-      const imageUrl = `${baseUrl}${item.image}`;
-      message += `- ${item.name} (x${item.quantity}) : ${formatPrice(itemTotal)}\n`;
-      message += `${imageUrl}\n\n`;
-    });
-    
-    message += `Total : ${formatPrice(total)}`;
-    
+  const generateWhatsAppMessage = (addressData: AddressData): string => {
+    // Liste des produits avec prix
+    const productsList = cartItems
+      .map((item) => {
+        const itemTotal = item.price * item.quantity;
+        return `${item.name} (x${item.quantity}) - ${formatPrice(itemTotal)}`;
+      })
+      .join('\n');
+
+    // Adresse complète
+    const fullAddress = `${addressData.avenue}, ${addressData.quartier}, ${addressData.commune}`;
+
+    // Message formaté selon le spécifié
+    const message = `Bonjour Épices Impériale, je suis ${addressData.nom}. Je souhaite commander :\n${productsList}\n\nLivraison à : ${fullAddress}\nRéf : ${addressData.point_reference || 'N/A'}.`;
+
     return message;
   };
 
+  const handleOrderConfirm = async (addressData: AddressData) => {
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      // Enregistrer dans Supabase
+      const result = await saveOrderToSupabase({
+        addressData,
+        cartItems: cartItems.map((item) => ({
+          id: item.id,
+          name: item.name,
+          price: item.price,
+          quantity: item.quantity,
+        })),
+      });
+
+      if (!result.success) {
+        throw new Error(result.error || 'Erreur lors de l\'enregistrement');
+      }
+
+      // Si succès, ouvrir WhatsApp avec le message formaté
+      const message = generateWhatsAppMessage(addressData);
+      const whatsappUrl = `https://wa.me/243801910623?text=${encodeURIComponent(message)}`;
+
+      // Attendre un peu avant d'ouvrir WhatsApp pour que l'utilisateur voit le message de succès
+      setTimeout(() => {
+        window.open(whatsappUrl, '_blank');
+        // Vider le panier après la commande
+        clearCart();
+      }, 2000);
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : 'Une erreur s\'est produite';
+      setError(errorMessage);
+      console.error('Erreur:', err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const handleWhatsAppClick = () => {
-    const message = generateWhatsAppMessage();
-    const whatsappUrl = `https://wa.me/243801910623?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
+    // Ouvrir la modal au lieu d'ouvrir WhatsApp directement
+    setIsModalOpen(true);
   };
 
   return (
-    <section id="cart" className="py-24 bg-black text-white">
-      <div className="max-w-7xl mx-auto px-6">
-        <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center">
-          Votre <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-600">Panier</span>
-        </h2>
+    <>
+      <section id="cart" className="py-24 bg-black text-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center">
+            Votre <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-600">Panier</span>
+          </h2>
 
-        <div className="grid lg:grid-cols-3 gap-12">
-          {/* Liste des produits */}
-          <div className="lg:col-span-2 space-y-4">
+          <div className="grid lg:grid-cols-3 gap-12">
+            {/* Liste des produits */}
+            <div className="lg:col-span-2 space-y-4">
             {cartItems.map((item) => (
               <div
                 key={item.id}
@@ -155,13 +194,15 @@ export default function Cart() {
               <div className="space-y-4">
                 <button
                   onClick={handleWhatsAppClick}
-                  className="w-full bg-gradient-to-r from-amber-500 to-amber-600 text-black font-bold py-3 rounded-lg hover:from-amber-400 hover:to-amber-500 transition transform hover:scale-105"
+                  disabled={isLoading}
+                  className="w-full bg-gradient-to-r from-amber-500 to-amber-600 text-black font-bold py-3 rounded-lg hover:from-amber-400 hover:to-amber-500 transition transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Commander sur WhatsApp
+                  {isLoading ? 'Traitement...' : 'Commander sur WhatsApp'}
                 </button>
                 <button
                   onClick={clearCart}
-                  className="w-full bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 rounded-lg transition"
+                  disabled={isLoading}
+                  className="w-full bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 rounded-lg transition disabled:opacity-50"
                 >
                   Vider le panier
                 </button>
@@ -171,5 +212,18 @@ export default function Cart() {
         </div>
       </div>
     </section>
+
+    {/* Modal de confirmation de commande */}
+    <OrderModal
+      isOpen={isModalOpen}
+      onClose={() => {
+        setIsModalOpen(false);
+        setError(null);
+      }}
+      onConfirm={handleOrderConfirm}
+      isLoading={isLoading}
+      error={error}
+    />
+    </>
   );
 }
