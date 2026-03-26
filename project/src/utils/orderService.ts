@@ -7,6 +7,7 @@ export interface AddressData {
   quartier: string;
   commune: string;
   point_reference: string;
+  frais_livraison?: number;
 }
 
 export interface OrderData {
@@ -40,6 +41,7 @@ export const saveOrderToSupabase = async (
           quartier: orderData.addressData.quartier,
           commune: orderData.addressData.commune,
           point_reference: orderData.addressData.point_reference,
+          frais_livraison: orderData.addressData.frais_livraison || 0,
         },
       ])
       .select('id')
