@@ -23,12 +23,26 @@ const COMMUNES = [
   'Ngaliema',
   'Limete',
   'Bandalungwa',
-  'Kalamu',
   'Kintambo',
-  'Lemba',
-  'Matongé',
+  'Lingwala',
   'Kinshasa',
-  'Autre',
+  'Barumbu',
+  'Kasa-Vubu',
+  'Kalamu',
+  'Ngiri-Ngiri',
+  'Mont-Ngafula',
+  'Lemba',
+  'Matete',
+  'N\'djili',
+  'Masina',
+  'Kimbanseke',
+  'N\'sele',
+  'Maluku',
+  'Makala',
+  'Bumbu',
+  'Selembao',
+  'Kisenso',
+  'Ngaba',
 ];
 
 export default function OrderModal({
@@ -50,6 +64,16 @@ export default function OrderModal({
 
   if (!isOpen) return null;
 
+  const isFormValid = () => {
+    return (
+      formData.nom.trim() !== '' &&
+      formData.telephone.trim() !== '' &&
+      formData.avenue.trim() !== '' &&
+      formData.quartier.trim() !== '' &&
+      formData.commune !== ''
+    );
+  };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -62,9 +86,24 @@ export default function OrderModal({
     e.preventDefault();
     
     // Vérification des champs obligatoires
-    if (!formData.nom.trim() || !formData.telephone.trim() || !formData.avenue.trim() || 
-        !formData.quartier.trim() || !formData.commune.trim()) {
-      alert('Veuillez remplir tous les champs obligatoires');
+    if (!formData.nom.trim()) {
+      alert('Veuillez entrer votre nom complet');
+      return;
+    }
+    if (!formData.telephone.trim()) {
+      alert('Veuillez entrer votre numéro de téléphone');
+      return;
+    }
+    if (!formData.avenue.trim()) {
+      alert('Veuillez entrer le nom de l\'avenue');
+      return;
+    }
+    if (!formData.quartier.trim()) {
+      alert('Veuillez entrer votre quartier');
+      return;
+    }
+    if (!formData.commune || formData.commune === '') {
+      alert('Veuillez sélectionner une commune');
       return;
     }
     
@@ -258,7 +297,7 @@ export default function OrderModal({
               </button>
               <button
                 type="submit"
-                disabled={isLoading}
+                disabled={isLoading || !isFormValid()}
                 className="flex-1 px-4 py-3 bg-gradient-to-r from-amber-500 to-amber-600 text-black font-semibold rounded-lg hover:from-amber-400 hover:to-amber-500 transition disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isLoading ? 'Traitement...' : 'Confirmer & Envoyer'}
