@@ -44,14 +44,14 @@ export const saveOrderToSupabase = async (
           frais_livraison: orderData.addressData.frais_livraison || 0,
         },
       ])
-      .select('id')
+      .select('user_id')
       .single();
 
     if (clientError) {
       throw new Error(`Erreur lors de l'ajout du client: ${clientError.message}`);
     }
 
-    const clientId = clientData?.id;
+    const clientId = clientData?.user_id;
     if (!clientId) {
       throw new Error('ID client non retourné');
     }
