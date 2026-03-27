@@ -22,7 +22,7 @@ export interface OrderData {
 
 /**
  * Enregistre une commande complète dans Supabase
- * 1. Crée/récupère le client dans "Carnet d'adresses" (avec adresse complète)
+ * 1. Crée/récupère le client dans "Carnet_adresses" (avec adresse complète)
  * 2. Crée une commande dans "Suivi des vents"
  * 3. Enregistre chaque article dans "contenu du panier"
  */
@@ -32,7 +32,7 @@ export const saveOrderToSupabase = async (
   try {
     // Étape 1 : Insérer le client avec adresse dans "Carnet d'adresses"
     const { data: clientData, error: clientError } = await supabase
-      .from('Carnet d\'adresses')
+      .from('Carnet_adresses')
       .insert([
         {
           nom: orderData.addressData.nom,

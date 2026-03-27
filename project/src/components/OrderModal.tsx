@@ -180,7 +180,7 @@ export default function OrderModal({
                     name="nom"
                     value={formData.nom}
                     onChange={handleInputChange}
-                    placeholder="Ex: Jean Dupont"
+                    placeholder="Ex: Endic SALUMU"
                     disabled={isLoading}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent disabled:bg-gray-100 disabled:opacity-60"
                   />
@@ -238,7 +238,7 @@ export default function OrderModal({
                     name="quartier"
                     value={formData.quartier}
                     onChange={handleInputChange}
-                    placeholder="Ex: Gombe Centre"
+                    placeholder="Ex: bogano"
                     disabled={isLoading}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-100 disabled:opacity-60"
                   />
@@ -270,7 +270,7 @@ export default function OrderModal({
               {/* Point de Référence */}
               <div>
                 <label htmlFor="point_reference" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Point de référence (optionnel)
+                  Point de référence *
                 </label>
                 <textarea
                   id="point_reference"
