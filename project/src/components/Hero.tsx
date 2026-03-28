@@ -35,11 +35,11 @@ export default function Hero() {
         </h1>
 
         <p className="text-2xl md:text-3xl text-amber-500 mb-4 font-light italic">
-          L'arôme du changement
+          La fierté de nos champs, dans votre assiette
         </p>
 
         <p className="text-lg md:text-xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed font-light">
-          Des saveurs authentiques, puissantes et raffinées, pour transformer chaque plat en expérience exceptionnelle.
+           Nos épices sont cultivées et sélectionnées avec soin au cœur de la RDC. Chaque parfum reflète la richesse de notre terre et le savoir-faire de nos producteurs locaux.
         </p>
 
         <button

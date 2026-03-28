@@ -21,7 +21,7 @@ export default function Footer() {
   </span>
 </div>
             <p className="text-gray-400 mb-4 leading-relaxed">
-              Une marque premium d'IMPERIAL GROUP. Valorisant les richesses africaines à travers des épices d'exception.
+              Une marque premium d'IMPERIAL GROUP. Valorisant les richesses congolaise à travers des épices d'exception.
             </p>
             <div className="flex space-x-4">
               <a

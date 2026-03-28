@@ -15,12 +15,12 @@ export default function WhyChooseUs() {
     {
       icon: MapPin,
       title: 'Transformation Locale',
-      description: 'Fièrement transformés en Afrique, contribuant au développement économique local et à la création de valeur sur le continent.',
+      description: 'Fièrement transformés en RDC, contribuant au développement économique local et à la création de valeur sur le continent.',
     },
     {
       icon: Sparkles,
       title: 'Innovation & Ambition',
-      description: 'Une marque ambitieuse qui repousse les limites et prouve que l\'Afrique peut créer des produits d\'excellence mondiale.',
+      description: 'Une marque ambitieuse qui repousse les limites et prouve que la RDC peut créer des produits d\'excellence mondiale.',
     },
   ];
 

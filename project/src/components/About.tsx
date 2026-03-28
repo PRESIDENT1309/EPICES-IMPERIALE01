@@ -13,13 +13,13 @@ export default function About() {
               À PROPOS D'<span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-600">ÉPICES IMPÉRIALE</span>
             </h2>
             <p className="text-gray-300 text-lg leading-relaxed mb-6">
-              ÉPICES IMPÉRIALE est une marque née d'une vision : valoriser les richesses africaines et offrir au monde des saveurs authentiques, puissantes et nobles.
+             ÉPICES IMPÉRIALE est née d’une vision claire : mettre en lumière les trésors culinaires de la RDC et partager au monde des saveurs authentiques, puissantes et nobles.
             </p>
             <p className="text-gray-300 text-lg leading-relaxed mb-6">
-              Nous sommes bien plus qu'une marque d'épices. Nous sommes un mouvement qui célèbre l'excellence africaine et transforme des produits locaux en trésors gastronomiques reconnus internationalement.
+              Nous sommes bien plus qu’une marque d’épices. Nous sommes un mouvement qui célèbre le savoir-faire congolais, transforme les produits locaux en véritables joyaux gastronomiques et fait rayonner la richesse de notre terroir à l’international.
             </p>
             <p className="text-gray-300 text-lg leading-relaxed">
-              Chaque produit ÉPICES IMPÉRIALE incarne notre engagement envers la qualité supérieure, l'authenticité et l'innovation. Nous croyons que les saveurs africaines méritent d'être au centre de la gastronomie mondiale.
+              Chaque produit ÉPICES IMPÉRIALE reflète notre engagement envers la qualité supérieure, l’authenticité et l’excellence congolaise. Nous croyons que les saveurs de la RDC méritent de briller au cœur de la gastronomie mondiale.
             </p>
           </div>
 
@@ -44,7 +44,7 @@ export default function About() {
               <TrendingUp className="text-amber-500 mb-4" size={36} />
               <h3 className="text-2xl font-bold mb-3">Vision Ambitieuse</h3>
               <p className="text-gray-400">
-                Notre objectif : devenir une référence mondiale et prouver que l'Afrique peut créer des marques d'excellence internationale.
+                Notre objectif : devenir une référence mondiale et prouver que la RDC peut créer des marques d'excellence internationale.
               </p>
             </div>
           </div>
