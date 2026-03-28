@@ -41,7 +41,7 @@ export const saveOrderToSupabase = async (
           quartier: orderData.addressData.quartier,
           commune: orderData.addressData.commune,
           point_reference: orderData.addressData.point_reference,
-          frais_livraison: orderData.addressData.frais_livraison || 0,
+          // plus de frais_livraison ici
         },
       ])
       .select('id')
@@ -71,6 +71,7 @@ export const saveOrderToSupabase = async (
           id_client: clientId,
           date: new Date().toISOString(),
           statut: 'en_attente',
+          frais_livraison: orderData.addressData.frais_livraison || 0,
         },
       ])
       .select('id')
