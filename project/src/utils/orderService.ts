@@ -89,13 +89,13 @@ export const saveOrderToSupabase = async (
     console.log(`✓ Commande créée avec ID: ${orderId}`);
 
     // Étape 3 : Insérer les articles dans "contenu_du_panier"
-    const cartItems = orderData.cartItems.map((item) => ({
-      id_commande: orderId,
-      id_produit: item.id,
-      nom_produit: item.name,
-      quantite: item.quantity,
-      prix_unitaire: item.price,
-    }));
+   const cartItems = orderData.cartItems.map((item) => ({
+  id_commande: orderId,
+  id_produit: Number(item.id), // ✅ FIX ICI
+  nom_produit: item.name,
+  quantite: item.quantity,
+  prix_unitaire: item.price,
+}));
 
     const { error: cartItemsError } = await supabase
       .from('contenu_du_panier')
