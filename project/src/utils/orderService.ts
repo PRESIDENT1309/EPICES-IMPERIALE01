@@ -68,7 +68,7 @@ export const saveOrderToSupabase = async (
       .from('commandes')
       .insert([
         {
-          id_client: clientId,
+          client_id: clientId,
           date: new Date().toISOString(),
           statut: 'en_attente',
           frais_livraison: orderData.addressData.frais_livraison || 0,
