@@ -23,8 +23,8 @@ export interface OrderData {
 /**
  * Enregistre une commande complète dans Supabase
  * 1. Crée/récupère le client dans "carnet_adresses" (avec adresse complète)
- * 2. Crée une commande dans "Suivi des vents"
- * 3. Enregistre chaque article dans "contenu du panier"
+ * 2. Crée une commande dans "suivi_des_ventes"
+ * 3. Enregistre chaque article dans "contenu_du_panier"
  */
 export const saveOrderToSupabase = async (
   orderData: OrderData
@@ -63,9 +63,9 @@ export const saveOrderToSupabase = async (
       orderData.addressData.point_reference ? ` (Réf: ${orderData.addressData.point_reference})` : ''
     }`;
 
-    // Étape 2 : Créer la commande dans "Suivi des vents"
+    // Étape 2 : Créer la commande dans "suivi_des_ventes"
     const { data: orderData2, error: orderError } = await supabase
-      .from('Suivi des vents')
+      .from('suivi_des_ventes')
       .insert([
         {
           id_client: clientId,
@@ -87,7 +87,7 @@ export const saveOrderToSupabase = async (
 
     console.log(`✓ Commande créée avec ID: ${orderId}`);
 
-    // Étape 3 : Insérer les articles dans "contenu du panier"
+    // Étape 3 : Insérer les articles dans "contenu_du_panier"
     const cartItems = orderData.cartItems.map((item) => ({
       id_commande: orderId,
       id_produit: item.id,
@@ -97,7 +97,7 @@ export const saveOrderToSupabase = async (
     }));
 
     const { error: cartItemsError } = await supabase
-      .from('contenu du panier')
+      .from('contenu_du_panier')
       .insert(cartItems);
 
     if (cartItemsError) {
