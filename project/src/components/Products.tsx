@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { ShoppingCart } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { supabase } from '../supabaseClient';
+import OrderModal from './OrderModal';
+import { saveOrderToSupabase, type AddressData } from '../utils/orderService';
 
 interface Product {
   id: number;
@@ -17,6 +19,10 @@ export default function Products() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [selectedProductForOrder, setSelectedProductForOrder] = useState<Product | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isOrderLoading, setIsOrderLoading] = useState(false);
+  const [orderError, setOrderError] = useState<string | null>(null);
 
   useEffect(() => {
     fetchProducts();
@@ -61,9 +67,63 @@ export default function Products() {
   };
 
   const handleOrderNow = (product: Product) => {
-    const message = `Bonjour Épices Impériale, je souhaite passer commande du produit suivant: ${product.nom} (${formatPrice(product.prix)})`;
-    const whatsappUrl = `https://wa.me/243801910623?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
+    setSelectedProductForOrder(product);
+    setIsModalOpen(true);
+    setOrderError(null);
+  };
+
+  const generateWhatsAppMessage = (product: Product, addressData: AddressData): string => {
+    const formattedPrice = formatPrice(product.prix);
+    const fullAddress = `${addressData.avenue}, ${addressData.quartier}, ${addressData.commune}`;
+
+    const message = `Bonjour Épices Impériale, je suis ${addressData.nom}. Je souhaite commander :\n${product.nom} - ${formattedPrice}\n\nLivraison à : ${fullAddress}${
+      addressData.point_reference ? `\nRéf : ${addressData.point_reference}` : ''
+    }.`;
+
+    return message;
+  };
+
+  const handleOrderConfirm = async (addressData: AddressData) => {
+    if (!selectedProductForOrder) return;
+
+    setIsOrderLoading(true);
+    setOrderError(null);
+
+    try {
+      // Enregistrer dans Supabase
+      const result = await saveOrderToSupabase({
+        addressData,
+        cartItems: [
+          {
+            id: selectedProductForOrder.id,
+            name: selectedProductForOrder.nom,
+            price: selectedProductForOrder.prix,
+            quantity: 1,
+          },
+        ],
+      });
+
+      if (!result.success) {
+        throw new Error(result.error || 'Erreur lors de l\'enregistrement');
+      }
+
+      // Si succès, ouvrir WhatsApp avec le message formaté
+      const message = generateWhatsAppMessage(selectedProductForOrder, addressData);
+      const whatsappUrl = `https://wa.me/243801910623?text=${encodeURIComponent(message)}`;
+
+      // Attendre un peu avant d'ouvrir WhatsApp pour que l'utilisateur voit le message de succès
+      setTimeout(() => {
+        window.open(whatsappUrl, '_blank');
+        setIsModalOpen(false);
+        setSelectedProductForOrder(null);
+      }, 1500);
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : 'Une erreur s\'est produite';
+      setOrderError(errorMessage);
+      console.error('Erreur:', err);
+    } finally {
+      setIsOrderLoading(false);
+    }
   };
 
   return (
@@ -77,6 +137,18 @@ export default function Products() {
             Une sélection d'épices premium pour transformer vos plats en chefs-d'œuvre culinaires
           </p>
         </div>
+
+        <OrderModal
+          isOpen={isModalOpen}
+          onClose={() => {
+            setIsModalOpen(false);
+            setSelectedProductForOrder(null);
+            setOrderError(null);
+          }}
+          onConfirm={handleOrderConfirm}
+          isLoading={isOrderLoading}
+          error={orderError}
+        />
 
         {error && (
           <div className="mb-8 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700">
