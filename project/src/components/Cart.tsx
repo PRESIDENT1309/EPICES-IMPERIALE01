@@ -12,12 +12,12 @@ export default function Cart() {
 
   if (cartItems.length === 0) {
     return (
-      <section id="cart" className="py-24 bg-black text-white">
-        <div className="max-w-7xl mx-auto px-6">
+      <section id="cart" className="py-16 sm:py-24 bg-black text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="text-center">
-            <ShoppingCart size={48} className="mx-auto mb-4 text-amber-500" />
-            <h2 className="text-4xl font-bold mb-4">Votre Panier</h2>
-            <p className="text-gray-400 text-lg">Votre panier est vide</p>
+            <ShoppingCart size={40} className="mx-auto mb-4 text-amber-500" />
+            <h2 className="text-2xl sm:text-4xl font-bold mb-2 sm:mb-4">Votre Panier</h2>
+            <p className="text-gray-400 text-base sm:text-lg">Votre panier est vide</p>
           </div>
         </div>
       </section>
@@ -99,22 +99,22 @@ export default function Cart() {
 
   return (
     <>
-      <section id="cart" className="py-24 bg-black text-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center">
+      <section id="cart" className="py-16 sm:py-24 bg-black text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 sm:mb-16 text-center">
             Votre <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-600">Panier</span>
           </h2>
 
-          <div className="grid lg:grid-cols-3 gap-12">
+          <div className="grid lg:grid-cols-3 gap-6 sm:gap-12">
             {/* Liste des produits */}
-            <div className="lg:col-span-2 space-y-4">
+            <div className="lg:col-span-2 space-y-3 sm:space-y-4">
             {cartItems.map((item) => (
               <div
                 key={item.id}
-                className="bg-gray-900 rounded-lg p-6 flex gap-4 items-start border border-gray-800 hover:border-amber-500 transition"
+                className="bg-gray-900 rounded-lg p-3 sm:p-4 flex gap-3 sm:gap-4 items-start border border-gray-800 hover:border-amber-500 transition"
               >
                 {/* Image */}
-                <div className="w-24 h-24 flex-shrink-0">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0">
                   <img
                     src={item.image}
                     alt={item.name}
@@ -123,29 +123,31 @@ export default function Cart() {
                 </div>
 
                 {/* Détails du produit */}
-                <div className="flex-1">
-                  <h3 className="text-xl font-bold mb-2">{item.name}</h3>
-                  <p className="text-amber-500 font-semibold mb-4">
-                    {formatPrice(item.price)} par unité
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-base sm:text-lg font-bold mb-1 truncate">{item.name}</h3>
+                  <p className="text-xs sm:text-sm text-amber-500 font-semibold mb-2 line-clamp-1">
+                    {formatPrice(item.price)}/u
                   </p>
 
                   {/* Contrôles de quantité */}
-                  <div className="flex items-center gap-3">
-                    <button
-                      onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                      className="px-3 py-1 bg-gray-800 hover:bg-gray-700 rounded text-sm font-semibold transition"
-                    >
-                      −
-                    </button>
-                    <span className="w-8 text-center font-semibold">{item.quantity}</span>
-                    <button
-                      onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                      className="px-3 py-1 bg-gray-800 hover:bg-gray-700 rounded text-sm font-semibold transition"
-                    >
-                      +
-                    </button>
-                    <span className="ml-auto text-gray-400">
-                      Total : {formatPrice(item.price * item.quantity)}
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <div className="flex items-center gap-2 bg-gray-800 rounded-lg p-1">
+                      <button
+                        onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                        className="w-6 h-6 sm:w-7 sm:h-7 flex items-center justify-center hover:bg-gray-700 rounded text-xs sm:text-sm font-semibold transition"
+                      >
+                        −
+                      </button>
+                      <span className="w-5 text-center font-semibold text-xs sm:text-sm">{item.quantity}</span>
+                      <button
+                        onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                        className="w-6 h-6 sm:w-7 sm:h-7 flex items-center justify-center hover:bg-gray-700 rounded text-xs sm:text-sm font-semibold transition"
+                      >
+                        +
+                      </button>
+                    </div>
+                    <span className="text-xs sm:text-sm text-gray-400">
+                      {formatPrice(item.price * item.quantity)}
                     </span>
                   </div>
                 </div>
@@ -153,10 +155,10 @@ export default function Cart() {
                 {/* Bouton supprimer */}
                 <button
                   onClick={() => removeFromCart(item.id)}
-                  className="text-red-500 hover:text-red-400 transition p-2"
+                  className="text-red-500 hover:text-red-400 transition p-1 sm:p-2 flex-shrink-0"
                   aria-label="Supprimer du panier"
                 >
-                  <Trash2 size={20} />
+                  <Trash2 size={18} />
                 </button>
               </div>
             ))}
@@ -164,47 +166,47 @@ export default function Cart() {
 
           {/* Résumé et commande */}
           <div className="lg:col-span-1">
-            <div className="bg-gray-900 rounded-lg p-8 border border-amber-500 sticky top-20">
-              <h3 className="text-2xl font-bold mb-6">Résumé</h3>
+            <div className="bg-gray-900 rounded-lg p-4 sm:p-6 border border-amber-500 sticky top-20">
+              <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Résumé</h3>
 
-              <div className="space-y-4 mb-8 pb-8 border-b border-gray-800">
-                <div className="flex justify-between text-gray-400">
-                  <span>Nombre d'articles :</span>
+              <div className="space-y-2 sm:space-y-3 mb-4 sm:mb-6 pb-4 sm:pb-6 border-b border-gray-800">
+                <div className="flex justify-between text-xs sm:text-sm text-gray-400">
+                  <span>Articles :</span>
                   <span className="font-semibold">
                     {cartItems.reduce((sum, item) => sum + item.quantity, 0)}
                   </span>
                 </div>
-                <div className="flex justify-between text-gray-400">
-                  <span>Nombre de produits :</span>
+                <div className="flex justify-between text-xs sm:text-sm text-gray-400">
+                  <span>Produits :</span>
                   <span className="font-semibold">{cartItems.length}</span>
                 </div>
               </div>
 
               {/* Total */}
-              <div className="mb-6 pb-6 border-b border-gray-800">
+              <div className="mb-4 sm:mb-6 pb-4 sm:pb-6 border-b border-gray-800">
                 <div className="flex justify-between items-center">
-                  <span className="text-lg font-bold">Total :</span>
-                  <span className="text-3xl font-bold text-amber-500">
+                  <span className="text-base sm:text-lg font-bold">Total :</span>
+                  <span className="text-2xl sm:text-3xl font-bold text-amber-500">
                     {formatPrice(total)}
                   </span>
                 </div>
               </div>
 
               {/* Boutons */}
-              <div className="space-y-4">
+              <div className="space-y-3">
                 <button
                   onClick={handleWhatsAppClick}
                   disabled={isLoading}
-                  className="w-full bg-gradient-to-r from-amber-500 to-amber-600 text-black font-bold py-3 rounded-lg hover:from-amber-400 hover:to-amber-500 transition transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full bg-gradient-to-r from-amber-500 to-amber-600 text-black font-bold py-2 sm:py-3 rounded-lg hover:from-amber-400 hover:to-amber-500 transition transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
                 >
-                  {isLoading ? 'Traitement...' : 'Commander sur WhatsApp'}
+                  {isLoading ? 'Traitement...' : 'Commander'}
                 </button>
                 <button
                   onClick={clearCart}
                   disabled={isLoading}
-                  className="w-full bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 rounded-lg transition disabled:opacity-50"
+                  className="w-full bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 sm:py-3 rounded-lg transition disabled:opacity-50 text-sm sm:text-base"
                 >
-                  Vider le panier
+                  Vider
                 </button>
               </div>
             </div>

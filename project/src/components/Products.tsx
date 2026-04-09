@@ -165,15 +165,16 @@ export default function Products() {
             Aucun produit disponible pour le moment.
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {products.map((product) => (
               <div
                 key={product.id}
-                className={`group bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 ${
+                className={`group bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-amber-500 flex flex-col ${
                   !product.is_available ? 'opacity-60' : ''
                 }`}
               >
-                <div className="relative h-68 overflow-hidden">
+                {/* Image Container */}
+                <div className="relative h-40 sm:h-48 lg:h-40 overflow-hidden bg-gray-100">
                   {product.image_url ? (
                     <img
                       src={product.image_url}
@@ -186,50 +187,55 @@ export default function Products() {
                       }}
                     />
                   ) : null}
-                  <div className={`w-full h-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center p-4 ${
+                  <div className={`w-full h-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center p-2 text-center ${
                     product.image_url ? 'hidden' : ''
                   }`}>
-                    <p className="text-white text-center font-bold text-lg">{product.nom}</p>
+                    <p className="text-white font-bold text-xs sm:text-sm line-clamp-2">{product.nom}</p>
                   </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
 
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold text-black mb-2">{product.nom}</h3>
-                  <p className="text-gray-600 mb-4 text-sm leading-relaxed">{product.description}</p>
+                {/* Content */}
+                <div className="p-3 sm:p-4 flex-1 flex flex-col">
+                  {/* Title */}
+                  <h3 className="text-base sm:text-lg font-bold text-black mb-1 line-clamp-2">{product.nom}</h3>
+                  
+                  {/* Description */}
+                  <p className="text-gray-600 mb-2 text-xs sm:text-sm line-clamp-2 flex-1">{product.description}</p>
 
-                  <div className="mb-4 flex items-center justify-between">
-                    <span className="text-3xl font-bold text-amber-600">{formatPrice(product.prix)}</span>
+                  {/* Price & Badge */}
+                  <div className="mb-3 flex items-center justify-between">
+                    <span className="text-lg sm:text-2xl font-bold text-amber-600">{formatPrice(product.prix)}</span>
                     {!product.is_available && (
-                      <span className="text-xs font-semibold text-red-600 bg-red-50 px-2 py-1 rounded">
+                      <span className="text-xs font-semibold text-red-600 bg-red-50 px-2 py-0.5 rounded">
                         Indisponible
                       </span>
                     )}
                   </div>
 
+                  {/* Buttons */}
                   <div className="space-y-2">
                     <button
                       onClick={() => handleAddToCart(product)}
                       disabled={!product.is_available}
-                      className={`w-full flex items-center justify-center space-x-2 px-4 py-2 rounded-lg transition-colors duration-300 font-semibold ${
+                      className={`w-full flex items-center justify-center space-x-1 px-3 py-2 rounded-lg transition-colors duration-300 font-semibold text-xs sm:text-sm ${
                         product.is_available
                           ? 'bg-amber-500 text-white hover:bg-amber-600'
                           : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                       }`}
                     >
-                      <ShoppingCart size={18} />
-                      <span>Ajouter au panier</span>
+                      <ShoppingCart size={16} />
+                      <span>Panier</span>
                     </button>
                     <button
                       onClick={() => handleOrderNow(product)}
                       disabled={!product.is_available}
-                      className={`w-full px-4 py-2 rounded-lg transition-colors duration-300 font-semibold text-sm ${
+                      className={`w-full px-3 py-2 rounded-lg transition-colors duration-300 font-semibold text-xs sm:text-sm ${
                         product.is_available
                           ? 'bg-black text-white hover:bg-gray-800'
                           : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                       }`}
                     >
-                      Commander maintenant
+                      Commander
                     </button>
                   </div>
                 </div>
