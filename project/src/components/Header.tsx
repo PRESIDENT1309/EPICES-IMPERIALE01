@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
-import logo from '../images/logo.png.jpeg';
+// import logo from '../images/logo.png.jpeg'; // Temporairement commenté pour debug
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -18,11 +18,14 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
+            {/* Logo temporairement désactivé pour debug */}
+            {/*
             <img 
     src={logo}
     alt="Logo Epices Imperiale" 
     className="w-12 h-12 rounded-full shadow-lg border border-amber-500"
   />
+            */}
   <span className="text-2xl font-bold">
     <span className="text-white">ÉPICES</span>
     <span className="text-amber-500"> IMPÉRIALE</span>
