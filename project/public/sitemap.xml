@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0">
+  
+  <!-- Pages principales -->
+  <url>
+    <loc>https://epices-imperiale-01.vercel.app/</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <url>
+    <loc>https://epices-imperiale-01.vercel.app/#produits</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <url>
+    <loc>https://epices-imperiale-01.vercel.app/#a-propos</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://epices-imperiale-01.vercel.app/#contact</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Pages de produits (à mettre à jour) -->
+  <url>
+    <loc>https://epices-imperiale-01.vercel.app/produit/piment-en-poudre</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://epices-imperiale-01.vercel.app/images/piment-en-poudre.jpg</image:loc>
+      <image:title>Piment en Poudre Premium - ÉPICES IMPÉRIALE</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://epices-imperiale-01.vercel.app/produit/clou-de-girofle</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://epices-imperiale-01.vercel.app/images/clou-de-girofle.jpg</image:loc>
+      <image:title>Clou de Girofle Premium - ÉPICES IMPÉRIALE</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://epices-imperiale-01.vercel.app/produit/curcuma-bio</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://epices-imperiale-01.vercel.app/images/curcuma-bio.jpg</image:loc>
+      <image:title>Curcuma Bio Premium - ÉPICES IMPÉRIALE</image:title>
+    </image:image>
+  </url>
+
+</urlset>

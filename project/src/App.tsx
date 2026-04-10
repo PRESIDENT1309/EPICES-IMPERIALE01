@@ -10,6 +10,8 @@ import Lifestyle from './components/Lifestyle';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import FloatingCart from './components/FloatingCart';
+import SEO from './components/SEO';
+import { SchemaOrganization } from './components/Schema';
 import { CartProvider } from './context/CartContext';
 
 function AppContent() {
@@ -45,20 +47,30 @@ function AppContent() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
-      <Header />
-      <main>
-        <Hero />
-        <Products />
-        <Cart />
-        <About />
-        <Vision />
-        <WhyChooseUs />
-        <Lifestyle />
-        <Contact />
+    <>
+      <SEO
+        title="Épices Premium Kinshasa | ÉPICES IMPÉRIALE"
+        description="Découvrez nos épices 100% naturelles cultivées en RDC. Piment, clou de girofle, curcuma bio... Livraison à Kinshasa. Commande sur WhatsApp."
+        keywords="épices Kinshasa, acheter épices RDC, piment en poudre, épices naturelles, épices Afrique"
+        canonical="/"
+      />
+      <SchemaOrganization />
+      
+      <div className="min-h-screen bg-white">
+        <Header />
+        <main>
+          <Hero />
+          <Products />
+          <Cart />
+          <About />
+          <Vision />
+          <WhyChooseUs />
+          <Lifestyle />
+          <Contact />
       </main>
       <Footer />
-    </div>
+      </div>
+    </>
   );
 }
 

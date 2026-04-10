@@ -1,0 +1,23 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: *.pdf$
+Disallow: *.js$
+Disallow: *.css$
+
+# Sitemaps
+Sitemap: https://epices-imperiale-01.vercel.app/sitemap.xml
+
+# Crawl delay pour respecter serveur
+Crawl-delay: 1
+
+# Règles spéciales Google
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Règles spéciales Bing
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
