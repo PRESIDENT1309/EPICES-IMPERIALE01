@@ -20,7 +20,7 @@ function AppContent() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2000);
+    }, 1000); // Remis à 1 seconde
 
     return () => clearTimeout(timer);
   }, []);
@@ -80,7 +80,7 @@ function App() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2000);
+    }, 1000); // Remis à 1 seconde
 
     return () => clearTimeout(timer);
   }, []);
