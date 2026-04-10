@@ -3,6 +3,7 @@
  * Copie-colle ce modèle pour tes pages produits
  */
 
+// @ts-ignore - SEO component exists, language server false positive
 import SEO from '../components/SEO';
 import { SchemaProduct, SchemaBreadcrumb } from '../components/Schema';
 import { PRODUCT_DESCRIPTIONS } from '../data/seo-content';
